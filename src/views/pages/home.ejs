@@ -1,0 +1,39 @@
+<%- include('../components/header') %>
+
+    <div class="row my-4">
+        <h4 class="col-6">Welcome Back <%= user.name %>
+        </h4>
+        <div class="col-3"></div>
+        <div class="col-3"><a href="/user/logout" class="btn btn-warning">Logout</a></div>
+    </div>
+
+    <% if (user.isAdmin) { %>
+        <h2>Users</h2>
+        <table class="table">
+            <tr>
+                <th>S No.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            <% allUsers.forEach((member, index)=> { %>
+                <tr>
+                    <td>
+                        <%= index + 1 %>
+                    </td>
+                    <td>
+                        <%= member.name %>
+                    </td>
+                    <td>
+                        <%= member.email %>
+                    </td>
+                    <td>
+                        <a href="/user/edit/<%= member._id %>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="/user/delete/<%= member._id %>" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                <% }); %>
+        </table>
+        <% } %>
+
+            <%- include('../components/footer') %>
